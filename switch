@@ -81,7 +81,7 @@ then
 else
     nname=$(echo ${nname} | sed -e 's/\&nbsp/ /g')
     aarch=$(echo ${aarch} | sed -e 's/\&nbsp/ /g')
-    printf "Selected \033[0;1m\033[1;32m$nname\033[0;0m on \033[0;1m\033[1;32m$aarch"
+    printf "Selected \033[0;1m\033[1;32m$nname\033[0;0m on \033[0;1m\033[1;32m$aarch\033[0m"
     echo "export PATH=$ppath/bin:\$PATH" > ~/.setjava.sh
     echo
 fi
