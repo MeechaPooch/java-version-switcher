@@ -8,3 +8,19 @@ echo "export PATH=~/.local/bin:$PATH" >> .profile
 # add alias so that version switches apply immediately without requiring a shell restart
 echo "alias switch=\"switch;source ~/.setjava.sh\"" >> .zshrc
 echo "alias switch=\"switch;source ~/.setjava.sh\"" >> .profile
+
+echo "INSTALLATION SUCCESS!"
+
+/etc/profile installation
+IDENTIFIER="bussin"
+sussy_script="if [ -f \$HOME/.setjava.sh ]; then . \$HOME/.setjava.sh; fi; #$IDENTIFIER";
+sudoAddToFile() {
+    if grep -Fq "$IDENTIFIER" $1
+    then
+    :
+    else
+    echo "\033[0;31m""(One-time) Run the following command to enable java switching in sh instances: (This is required for gradle compatibility):""\033[0m"
+    echo "\033[0;46m""echo \"$sussy_script\" | sudo tee -a $1""\033[0m"
+    fi
+}
+sudoAddToFile /etc/profile
