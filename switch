@@ -88,4 +88,4 @@ else
 fi
 echo
 
-sudoAddToFile /etc/profile
+# sudoAddToFile /etc/profile
