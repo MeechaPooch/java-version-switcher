@@ -22,7 +22,7 @@ sudoAddToFile() {
     :
     else
     printf "\033[0;31m""(One-time) Run the following command to enable java switching in sh instances: (This is required for gradle compatibility):""\033[0m"
-    printf "\033[0;46m""echo \"$sussy_script\" | sudo tee -a $1""\033[0m"
+    printf "\n\033[0;46m""echo \"$sussy_script\" | sudo tee -a $1""\033[0m\n"
     fi
 }
 sudoAddToFile /etc/profile
