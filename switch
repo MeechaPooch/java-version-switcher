@@ -3,8 +3,8 @@
 # add to /usr/profile
 # add to .zshrc
 IDENTIFIER="bussin"
-source_script="if [ -f $HOME/.setjava.sh ]; then; . $HOME/.setjava.sh; fi; #$IDENTIFIER"
-sussy_script="if [ -f \$HOME/.setjava.sh ]; then; . \$HOME/.setjava.sh; fi; #$IDENTIFIER"
+source_script="if [ -f $HOME/.setjava.sh ]; then . $HOME/.setjava.sh; fi; #$IDENTIFIER"
+sussy_script="if [ -f \$HOME/.setjava.sh ]; then . \$HOME/.setjava.sh; fi; #$IDENTIFIER"
 addToFile() {
     if grep -Fq "$IDENTIFIER" $1
     then
