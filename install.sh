@@ -11,7 +11,7 @@ echo "alias switch=\"switch;source ~/.setjava.sh\"" >> .profile
 
 echo "INSTALLATION SUCCESS!"
 
-/etc/profile installation
+# /etc/profile installation
 IDENTIFIER="bussin"
 sussy_script="if [ -f \$HOME/.setjava.sh ]; then . \$HOME/.setjava.sh; fi; #$IDENTIFIER";
 sudoAddToFile() {
