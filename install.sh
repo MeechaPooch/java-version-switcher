@@ -12,6 +12,8 @@ printf "\nalias switch=\"switch;. \$HOME/.setjava.sh\"" >> ~/.profile
 printf "\nalias switch=\"switch;. \$HOME/.setjava.sh\"" >> ~/.bashrc
 
 printf "INSTALLATION SUCCESS!"
+# add to installation counter
+curl -s "https://api.countapi.xyz/hit/meechapooch/switch-installs" > /dev/null
 
 # /etc/profile installation
 IDENTIFIER="bussin"
