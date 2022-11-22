@@ -6,5 +6,5 @@ chmod +x ~/.local/bin/switch
 echo "export PATH=~/.local/bin:$PATH" >> .zshrc
 echo "export PATH=~/.local/bin:$PATH" >> .profile
 # add alias so that version switches apply immediately without requiring a shell restart
-echo "alias switch='switch;source ~/.setjava.sh'" >> .zshrc
-echo "alias switch='switch;source ~/.setjava.sh'" >> .profile
+echo "alias switch=\"switch;source ~/.setjava.sh\"" >> .zshrc
+echo "alias switch=\"switch;source ~/.setjava.sh\"" >> .profile
