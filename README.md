@@ -14,4 +14,4 @@ Demo recorded with [terminalizer](https://github.com/faressoft/terminalizer)
 # Use Cases
 ## FRC Robot Software development on an M1 ARM Chip Mac:
 
-I use `switch` to toggle between x86-built java-11 for running FRC gradle tasks on my m1 mac and then arm-built java-18 for school java projects. Gradle tasks only work when I set my java version to  with `switch` to `Java 11.0 [x86_64]`.
+I use `switch` to toggle between x86-built java-11 for running FRC gradle tasks on my m1 mac and then arm-built java-18 for school java projects. Gradle tasks only work when I set my java version using `switch` to `Java 11.0 [x86_64]`.
