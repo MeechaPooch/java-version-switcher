@@ -1,0 +1,90 @@
+# Install path exports
+
+# add to /usr/profile
+# add to .zshrc
+IDENTIFIER="bussin"
+source_script="if [ -f $HOME/.setjava.sh ]; then; . $HOME/.setjava.sh; fi; #$IDENTIFIER"
+sussy_script="if [ -f \$HOME/.setjava.sh ]; then; . \$HOME/.setjava.sh; fi; #$IDENTIFIER"
+addToFile() {
+    if grep -Fq "$IDENTIFIER" $1
+    then
+    :
+    else
+    echo "\\n$source_script" >> $1
+    fi
+}
+sudoAddToFile() {
+    if grep -Fq "$IDENTIFIER" $1
+    then
+    :
+    else
+    echo "\033[0;31m""(One-time) Run the following command to enable java switching in sh instances: (Required for gradle compatibility):""\033[0m"
+    echo "\033[0;46m""echo \"$sussy_script\" | sudo tee -a $1""\033[0m"
+    fi
+}
+addToFile ~/.zshrc
+addToFile ~/.profile
+
+
+
+names=$(/usr/libexec/java_home -X | grep -A1 JVMPlatformVersion | grep string | sed -e 's/\<string\>//g' |  sed -e 's/\<\/string\>//g' | sed -e 's/\t\t/\t/g' | sed -e 's/\t/\n/g'|sed -e 's/ /\&nbsp/g'|sed -e 's/\n/ /g') 
+fullernames=$(/usr/libexec/java_home -X | grep -A1 JVMName | grep string | sed -e 's/\<string\>//g' |  sed -e 's/\<\/string\>//g' | sed -e 's/\t\t/\t/g' | sed -e 's/\t/\n/g'|sed -e 's/ /\&nbsp/g'|sed -e 's/\n/ /g') 
+archs=$(/usr/libexec/java_home -X | grep -A1 JVMArch | grep string | sed -e 's/\<string\>//g' |  sed -e 's/\<\/string\>//g' | sed -e 's/\t\t/\t/g' | sed -e 's/\t/\n/g'|sed -e 's/ /\&nbsp/g'|sed -e 's/\n/ /g') 
+paths=$(/usr/libexec/java_home -X | grep -A1 JVMHomePath | grep string | sed -e 's/\<string\>//g' |  sed -e 's/\<\/string\>//g' | sed -e 's/\t\t/\t/g' | sed -e 's/\t/\n/g'|sed -e 's/ /\&nbsp/g'|sed -e 's/\n/ /g') 
+vendors=$(/usr/libexec/java_home -X | grep -A1 JVMVendor | grep string | sed -e 's/\<string\>//g' |  sed -e 's/\<\/string\>//g' | sed -e 's/\t\t/\t/g' | sed -e 's/\t/\n/g'|sed -e 's/ /\&nbsp/g'|sed -e 's/\n/ /g') 
+# JVMArch
+# JVMPlatformVersion
+# JVMName
+names=($names)
+archs=($archs)
+paths=($paths)
+fullernames=($fullernames)
+vendors=($vendors)
+# echo ${myarray[@]}
+echo
+echo Select Java Version:
+
+for ((i=0; i<${#names[@]}; i=i+1)) do
+    namess=$(echo ${names[i]} | sed -e 's/\&nbsp/ /g')
+    fullernamess=$(echo ${fullernames[i]} | sed -e 's/\&nbsp/ /g')
+    shortfulname=($(echo ${fullernames[i]} | sed -e 's/\./ /g'))
+    shortfulname=${shortfulname[@]:0:2}
+    shortfulname=($(echo $shortfulname | sed -e 's/ /\./g'))
+    shortfulname=$(echo $shortfulname | sed -e 's/\&nbsp/ /g')
+    shortfulnamearr=($shortfulname)
+    shortfulversion=${shortfulnamearr[1]}
+    shortfulvendor=${shortfulnamearr[0]}
+
+    vendorr=$(echo ${vendors[i]} | sed -e 's/\&nbsp/ /g')
+    # printf "$((i+1))) $shortfulversion \033[0;0m[\033[0;1m${archs[i]}\033[0;0m] $shortfulvendor\033[0;0m"
+    printf "$((i+1))) Java $shortfulversion \033[0;0m[\033[0;1m${archs[i]}\033[0;0m]\e[2m - $shortfulvendor\033[0;0m"
+    # printf "$((i+1))) $shortfulname \033[0;0m[\033[0;1m${archs[i]}\033[0;0m]"
+    # printf "$((i+1))) Java $namess \033[0;0m[\033[0;1m${archs[i]}\033[0;0m] \033[0;33m($vendorr)\033[0;0m"
+    # printf "$((i+1))) $vendorr $namess \033[0;0m[\033[0;1m${archs[i]}\033[0;0m]"
+    # printf "$((i+1))) $vendorr $namess \033[0;0m[\033[0;1m${archs[i]}\033[0;0m]"
+    # printf "$((i+1))) Java $namess \033[0;0m[\033[0;1m${archs[i]}\033[0;0m]"
+    # printf "$((i+1))) ${archs[i]}  $namess"
+    # printf "$((i+1))) $namess   \t${archs[i]}"
+    echo
+done
+# var=$(/usr/libexec/java_home -X | grep -A1 JVMName | grep string | sed -e 's/\<string\>//g' |  sed -e 's/\<\/string\>//g')
+# echo $var
+
+
+read -p "> " version_index
+ppath=${paths[((version_index-1))]}
+aarch=${archs[((version_index-1))]}
+nname=${fullernames[((version_index-1))]}
+if [ "$aarch" = "" ];
+then
+    printf "\033[0;31mNAWWWWWW!"
+else
+    nname=$(echo ${nname} | sed -e 's/\&nbsp/ /g')
+    aarch=$(echo ${aarch} | sed -e 's/\&nbsp/ /g')
+    printf "Selected \033[0;1m\033[1;32m$nname\033[0;0m on \033[0;1m\033[1;32m$aarch"
+    echo "export PATH=$ppath/bin:\$PATH" > ~/.setjava.sh
+    echo
+fi
+echo
+
+sudoAddToFile /etc/profile
