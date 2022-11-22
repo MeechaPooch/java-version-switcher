@@ -1,5 +1,5 @@
 # java-version-switcher
-A Command line utility for managing Java installs on Mac
+A Command line utility for switching between Java installs on Mac (see [use cases](#use-cases))
 
 # Install Command:
 
