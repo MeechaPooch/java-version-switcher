@@ -3,15 +3,15 @@ mkdir -p ~/.local/bin
 curl "https://raw.githubusercontent.com/MeechaPooch/java-version-switcher/main/switch" > ~/.local/bin/switch
 chmod +x ~/.local/bin/switch
 # add switch bin to path in user zshrc and profile
-echo "\nexport PATH=\"~/.local/bin:\$PATH\"" >> ~/.zshrc
-echo "\nexport PATH=\"~/.local/bin:\$PATH\"" >> ~/.profile
-echo "\nexport PATH=\"~/.local/bin:\$PATH\"" >> ~/.bashrc
+printf "\nexport PATH=\"~/.local/bin:\$PATH\"" >> ~/.zshrc
+printf "\nexport PATH=\"~/.local/bin:\$PATH\"" >> ~/.profile
+printf "\nexport PATH=\"~/.local/bin:\$PATH\"" >> ~/.bashrc
 # add alias so that version switches apply immediately without requiring a shell restart
-echo "alias switch=\"switch;source ~/.setjava.sh\"" >> ~/.zshrc
-echo "alias switch=\"switch;source ~/.setjava.sh\"" >> ~/.profile
-echo "alias switch=\"switch;source ~/.setjava.sh\"" >> ~/.bashrc
+printf "\nalias switch=\"switch;source ~/.setjava.sh\"" >> ~/.zshrc
+printf "\nalias switch=\"switch;source ~/.setjava.sh\"" >> ~/.profile
+printf "\nalias switch=\"switch;source ~/.setjava.sh\"" >> ~/.bashrc
 
-echo "INSTALLATION SUCCESS!"
+printf "INSTALLATION SUCCESS!"
 
 # /etc/profile installation
 IDENTIFIER="bussin"
