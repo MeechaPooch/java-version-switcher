@@ -24,6 +24,7 @@ sudoAddToFile() {
 }
 addToFile ~/.zshrc
 addToFile ~/.profile
+addToFile ~/.bash_profile
 
 
 
